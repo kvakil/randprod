@@ -1,16 +1,16 @@
----
-title: Productivity Tracking with Random Sampling
----
+# Productivity Tracking with Random Sampling
 
-`randprod` is a productivity tracker based on sampling: it randomly
+randprod is a productivity tracker based on sampling: it randomly
 chooses times to ask about your current task. Because of this,
-`randprod` doesn't require tedious tracking like manual productivity
-managers.  Unlike automatic productivity trackers, `randprod` never
+randprod doesn't require tedious tracking like manual productivity
+managers.  Unlike automatic productivity trackers, randprod never
 makes a mistake and can give finer grained insights into how you
 spend your time.
 
-`randprod` outputs data to a CSV file, which you can munge using
-your preferred tools. More notably, `randprod` is very simple, and
+<p align="center"><img src="https://raw.githubusercontent.com/kvakil/randprod/master/screenshot.png" /></p>
+
+randprod outputs data to a CSV file, which you can munge using
+your preferred tools. More notably, randprod is very simple, and
 fits into roughly 25 lines of Bash:
 
 ```bash
@@ -34,8 +34,22 @@ while : ; do
     sleep 1
 done
 ```
+## Installation
 
-## Why `randprod`?
+Clone this repository or download the `zip` file from Github.
+
+randprod runs in `bash(1)` (version 4+) and requires
+[`zenity(1)`](https://en.wikipedia.org/wiki/Zenity), which should be
+available on most Linux/Unix/BSD systems. On Debian based systems,
+you can install it from the package repository:
+
+    sudo apt install zenity
+
+The file `config` contains some basic configuration variables--most
+notably the list of tasks and how often to interrupt you will allow
+interruptions for sampling.
+
+## Why randprod?
 
 Since there are more productivity trackers than there are people who
 use productivity trackers, every productivity tracker must justify
@@ -75,32 +89,14 @@ I wanted a productivity tracker which would work without requiring
 that I constantly keep track of it, and would allow more
 fine-grained control over which tasks I was doing. I also didn't
 want to [spend a large amount of time developing
-it](https://xkcd.com/1319/). The result is `randprod`. Although it
+it](https://xkcd.com/1319/). The result is randprod. Although it
 is very barebones, I've found it rather effective.
 
-## Installation
-
-Clone this repository or download the `zip` file from Github.
-
-`randprod` runs in `bash(1)` (version 4+) and requires
-[`zenity(1)`](https://en.wikipedia.org/wiki/Zenity), which should be
-available on most Linux/Unix/BSD systems. On Debian based systems,
-you can install it from the package repository:
-
-    sudo apt install zenity
-
-The file `config` contains some basic configuration variables--most
-notably the list of tasks and how often to interrupt you will allow
-interruptions for sampling.
-
-You might probably want `randprod` to start automatically when your
-computer starts. Details on how to do so differ depending on your
-operating system.
 
 ## Example Munging
 
 A productivity tracker is not terribly useful without some way to get
-data out of it. `randprod`'s log is a simple CSV format, so it can be
+data out of it. randprod's log is a simple CSV format, so it can be
 imported by your preferred spreadsheet. You can also use tools like
 [`sqlite3(1)`](https://sqlite.org/index.html) to easily craft complex
 queries. For example, the following script outputs how often each
@@ -128,7 +124,7 @@ More sample scripts are included in the `sql/` directory.
 
 ## Possible Improvements
 
-My personal experience after using `randprod` for a few months is
+My personal experience after using randprod for a few months is
 mostly positive. At first, the sampling feels a little intrusive, but
 by now I rarely notice it. In fact, having the random sampling is a
 good check. Sometimes I run off-task, and then the dialog box appears
@@ -140,7 +136,7 @@ However, there are definitely some pain points:
   but the current method only allows a fixed list of topics. The
   user should be allowed to dynamically enter tasks.
 
-- `randprod` could track the more common tasks and display those at
+- randprod could track the more common tasks and display those at
   the top.
 
 - The dialog occasionally pops up while typing, which can be very
@@ -150,9 +146,9 @@ However, there are definitely some pain points:
 
 - There is some research into how unpredictable rewards can help
   reinforce behavior more strongly than predictable rewards. Using
-  `randprod` along with a gamification method would help exploit
+  randprod along with a gamification method would help exploit
   this research.
 
-- Augmenting `randprod` along with an automatic system and using the
+- Augmenting randprod along with an automatic system and using the
   random sampling as a "validation" or for more data points could
   achieve the best of both worlds.
