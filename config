@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# The list of tasks that you want to track
+readarray -t TASKS <<EOF
+Task 1
+Task 2
+Task 3
+EOF
+
+# Number of seconds to wait (in expectation) between sampling
+export SAMPLE_RATE=600
+
+# Wait at least this many seconds in between samples
+export MIN_ALERT_SPACING=120
+
+# The expected time between samples is SAMPLE_RATE +
+# MIN_ALERT_SPACING. Specifically, the time between samples is a
+# random variable: Poisson(mean=SAMPLE_RATE) + MIN_ALERT_SPACING.
+
+# Height of the displayed dialog box in pixels
+export HEIGHT=400
+
+# Number of seconds to display the dialog box
+# If no response is received, "Timeout" is logged
+export TIMEOUT=10
+
+# The filename to output tasks to. The data is outputted into a CSV
+# format. The columns are Time and Task, which corresponds to the
+# time the user was interrupted and the task that they logged as
+# performing.
+export OUTPUT_FILENAME=randprod-log.csv
