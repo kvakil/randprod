@@ -17,7 +17,6 @@ fits into roughly 25 lines of Bash:
 #!/bin/bash
 set -Eeuo pipefail
 source config
-readarray -t TASKS < tasks
 [ -f "$OUTPUT_FILENAME" ] || echo Time,Task > "$OUTPUT_FILENAME"
 MAX_RANDOM=$((2**15))
 THRESHOLD=$((MAX_RANDOM / SAMPLE_RATE))
@@ -34,6 +33,7 @@ while : ; do
     sleep 1
 done
 ```
+
 ## Installation
 
 Clone this repository or download the `zip` file from Github.
